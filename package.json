@@ -1,0 +1,25 @@
+{
+  "name": "aws-lambda-bookapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melvinlee/aws-lambda-bookapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melvinlee/aws-lambda-bookapi/issues"
+  },
+  "homepage": "https://github.com/melvinlee/aws-lambda-bookapi#readme",
+  "dependencies": {
+    "aws-sdk": "^2.4.8"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.2"
+  }
+}

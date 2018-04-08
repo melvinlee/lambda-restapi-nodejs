@@ -1,11 +1,22 @@
-service: bookapi-lambda
+service: book-catalog-dynamodb-restapi
 
 provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}  
   region: ap-southeast-1
-
+  environment:
+      DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 functions:
   getAllBooks-Get:
     handler: handler.getAllBooks
@@ -19,8 +30,8 @@ functions:
       - http:
          method: get
          path: /books/{id}
-  addBook-Post:
-    handler: handler.addBook
+  createBook-Post:
+    handler: src/createBook.createBook
     events:
       - http:
           method: post
@@ -37,3 +48,21 @@ functions:
       - http:
           method: delete
           path: /books/{id}
+resources:
+  Resources:
+    BookCatalogDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
