@@ -59,12 +59,12 @@ module.exports.createBook = async (event, context, callback) => {
   };
 
   try {
-    await dynamoDb.put(params).promise();ß
+    await dynamoDb.put(params).promise();
     statusCode = 200;
     body = params.Item;
   } catch (err) {
     statusCode = 501;
-    body = { message: "Couldn't create the todo item.", error: err };
+    body = { message: "Couldn't create the book item.", error: err };
   } finally {
     const response = {
       statusCode: statusCode,
