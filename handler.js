@@ -5,26 +5,6 @@ let lambda = new AWS.Lambda();
 
 console.log("Loading...");
 
-module.exports.getAllBooks = async (event, context, callback) => {
-  console.log(`Request: ${JSON.stringify(event, null, 2)}`);
-  let result;
-
-  try {
-    result = await lambda.getAccountSettings().promise();
-  } catch (error) {
-    result = error;
-  } finally {
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: result,
-        input: event
-      })
-    };
-    callback(null, response);
-  }
-};
-
 module.exports.findBookById = (event, context, callback) => {
   console.log(`Request: ${JSON.stringify(event, null, 2)}`);
 
