@@ -25,7 +25,7 @@ functions:
          method: get
          path: /books
   findBookById-Get:
-    handler: handler.findBookById
+    handler: src/findBookById.findBookById
     events:
       - http:
          method: get
