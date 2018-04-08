@@ -1,0 +1,39 @@
+service: bookapi-lambda
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}  
+  region: ap-southeast-1
+
+functions:
+  getAllBooks-Get:
+    handler: handler.getAllBooks
+    events:
+      - http:
+         method: get
+         path: /books
+  findBookById-Get:
+    handler: handler.findBookById
+    events:
+      - http:
+         method: get
+         path: /books/{id}
+  addBook-Post:
+    handler: handler.addBook
+    events:
+      - http:
+          method: post
+          path: /book
+  editBook-Put:
+    handler: handler.editBook
+    events:
+      - http:
+          method: put
+          path: /books/{id}
+  removeBook-Delete:
+    handler: handler.deleteBook
+    events:
+      - http:
+          method: delete
+          path: /books/{id}
