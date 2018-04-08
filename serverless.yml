@@ -42,8 +42,8 @@ functions:
       - http:
           method: put
           path: /books/{id}
-  removeBook-Delete:
-    handler: handler.deleteBook
+  deleteBook-Delete:
+    handler: src/deleteBook.deleteBook
     events:
       - http:
           method: delete
