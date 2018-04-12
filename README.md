@@ -69,7 +69,7 @@ You can create, retrieve, update or delete book item using following endpoint:
 - GET /books - Get list all boooks
 - GET /books/{id} - Get a book by specify bookid
 - POST /book - To create new book item
-- PUT /{id} - Update book item by speficy bookid
+- PUT /books/{id} - Update book item by speficy bookid
 - DELETE /books/{id} - Remove book from the list
 
 ### Example 
