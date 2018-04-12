@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "node src/createBook.js && node src/findBookById.js && node src/getAllBooks.js && node src/deleteBook.js"
+    "test": "./testjs.sh"
   },
   "repository": {
     "type": "git",
