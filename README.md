@@ -1,4 +1,4 @@
- # Serverless REST API
+ # Serverless REST API [![Build Status](https://travis-ci.org/melvinlee/aws-lambda-bookapi.svg?branch=master)](https://travis-ci.org/melvinlee/aws-lambda-bookapi)
 
 This example demonstrates how to setup a RESTful Web Services allowing you to create, list, get, update and delete book item. DynamoDB is used to store the data.
 
