@@ -1,7 +1,15 @@
  # Serverless REST API
 
-
 This example demonstrates how to setup a RESTful Web Services allowing you to create, list, get, update and delete book item. DynamoDB is used to store the data.
+
+## The Architecture
+
+![Big picture](/img/serverless-arc.png?raw=true)
+
+AWS Services Involved In This Architecture
+* [AWS Lambda](https://aws.amazon.com/lambda/)
+* [Amazon API Gateway](https://aws.amazon.com/api-gateway/)
+* [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
 
 ## Use-Cases
 
