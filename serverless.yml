@@ -24,30 +24,35 @@ functions:
       - http:
          method: get
          path: /books
+         cors: true
   findBookById-Get:
     handler: src/findBookById.findBookById
     events:
       - http:
          method: get
          path: /books/{id}
+         cors: true
   createBook-Post:
     handler: src/createBook.createBook
     events:
       - http:
           method: post
           path: /book
+          cors: true
   editBook-Put:
     handler: handler.editBook
     events:
       - http:
           method: put
           path: /books/{id}
+          cors: true
   deleteBook-Delete:
     handler: src/deleteBook.deleteBook
     events:
       - http:
           method: delete
           path: /books/{id}
+          cors: true
 resources:
   Resources:
     BookCatalogDynamoDbTable:
