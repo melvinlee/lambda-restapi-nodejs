@@ -6,6 +6,7 @@ phases:
     commands:
        - echo Installing Serverless...
        - npm install -g serverless@1.26.1
+       - if ! serverless --version ; then exit 1; fi
        - serverless --version
   pre_build:
     commands:
