@@ -18,35 +18,35 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 functions:
-  getAllBooks-Get:
+  list:
     handler: src/getAllBooks.getAllBooks
     events:
       - http:
          method: get
          path: /books
          cors: true
-  findBookById-Get:
+  get:
     handler: src/findBookById.findBookById
     events:
       - http:
          method: get
          path: /books/{id}
          cors: true
-  createBook-Post:
+  create:
     handler: src/createBook.createBook
     events:
       - http:
           method: post
           path: /book
           cors: true
-  editBook-Put:
+  edit:
     handler: handler.editBook
     events:
       - http:
           method: put
           path: /books/{id}
           cors: true
-  deleteBook-Delete:
+  delete:
     handler: src/deleteBook.deleteBook
     events:
       - http:
