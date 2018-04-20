@@ -30,6 +30,33 @@ module.exports.createBook = (items) => {
   return dynamoDb.put(params).promise()
 }
 
+module.exports.editBook = (id, data) => {
+
+  const timestamp = new Date().getTime();
+
+  const params = {
+    TableName: process.env.DYNAMODB_TABLE,
+    Key:{
+        id: id
+    },
+      UpdateExpression: "set title = :title, author = :author, #book_read = :read, updatedAt = :updatedAt",
+      ExpressionAttributeNames: {
+        '#book_read': 'read',
+      },
+      ExpressionAttributeValues:{
+        ':title': data.title,
+        ':author': data.author,
+        ':read': data.read,
+        ':updatedAt': timestamp,
+      },
+      ReturnValues:"UPDATED_NEW"
+  };
+
+  console.log(params);
+
+  return dynamoDb.update(params).promise();
+}
+
 module.exports.deleteBook = (id) => {
   
   const params = {
