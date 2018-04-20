@@ -21,35 +21,35 @@ provider:
         
 functions:
   list:
-    handler: src/getAllBooks.getAllBooks
+    handler: book/list.handler
     events:
       - http:
          method: get
          path: /books
          cors: true
   get:
-    handler: src/findBookById.findBookById
+    handler: book/get.handler
     events:
       - http:
          method: get
          path: /books/{id}
          cors: true
   create:
-    handler: src/createBook.createBook
+    handler: book/create.handler
     events:
       - http:
           method: post
           path: /book
           cors: true
   edit:
-    handler: handler.editBook
+    handler: book/edit.handler
     events:
       - http:
           method: put
           path: /books/{id}
           cors: true
   delete:
-    handler: src/deleteBook.deleteBook
+    handler: book/delete.handler
     events:
       - http:
           method: delete
