@@ -1,5 +1,6 @@
 const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const uuid = require("uuid");
 
 module.exports.getAllBooks = () => {
   const params = {
@@ -20,14 +21,23 @@ module.exports.getBookById = id => {
   return dynamoDb.get(params).promise();
 };
 
-module.exports.createBook = (items) => {
+module.exports.createBook = (title, author) => {
+
+  const timestamp = new Date().getTime();
 
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
-    Item: items
+    Item: {
+        id: uuid.v1(),
+        title: title,
+        author: author,
+        read: false,
+        createdAt: timestamp,
+        updatedAt: timestamp
+    }
   };
 
-  return dynamoDb.put(params).promise()
+  return dynamoDb.put(params).promise().then(() => params.Item)
 }
 
 module.exports.editBook = (id, data) => {
@@ -51,9 +61,7 @@ module.exports.editBook = (id, data) => {
       },
       ReturnValues:"UPDATED_NEW"
   };
-
-  console.log(params);
-
+  
   return dynamoDb.update(params).promise();
 }
 

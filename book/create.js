@@ -1,7 +1,6 @@
 const databaseAccess = require("../databaseAccess")
 const response = require("../response");
 const validator = require("../validator");
-const uuid = require("uuid");
 
 module.exports.handler = async (event, context, callback) => {
   console.log(`Request: ${JSON.stringify(event, null, 2)}`);
@@ -34,23 +33,11 @@ module.exports.handler = async (event, context, callback) => {
     return;
   }
 
-  try {
-
-    const timestamp = new Date().getTime();
-  
-    const item = {
-        id: uuid.v1(),
-        title: title,
-        author: author,
-        read: false,
-        createdAt: timestamp,
-        updatedAt: timestamp
-      };
-
-    await databaseAccess.createBook(item);
-    callback(null, response.buildResponse(200, item));
-  } catch (err) {
-    console.log(err);
-    callback(null, response.buildResponse(501,{ message: "Couldn't create the book item.", error: err }));
+  try{
+    let result = await databaseAccess.createBook(title, author);
+    callback(null, response.buildResponse(200, result));
+  } catch (error) {
+    console.log(error);
+    callback(null, response.buildResponse(501,{ "message": "Couldn't create the book item.", "error": error }));
   } 
 };
