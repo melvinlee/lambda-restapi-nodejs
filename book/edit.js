@@ -3,9 +3,7 @@ const response = require("../response");
 const validator = require("../validator");
 
 module.exports.handler = async (event, context, callback) => {
-
-    console.log(`Request: ${JSON.stringify(event, null, 2)}`);
-
+    
     let error = [];
     const data = JSON.parse(event.body);
 
