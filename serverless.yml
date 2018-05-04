@@ -7,7 +7,7 @@ package:
   exclude:
     - node_modules/**
     - .idea/**
-    - .img/**
+    - img/**
     - .requirements/**
     - env/**
     - README.md
