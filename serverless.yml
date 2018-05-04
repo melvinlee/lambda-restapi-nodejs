@@ -16,6 +16,8 @@ package:
     - yarn.lock
     - buildspec.yml
     - build.sh
+    - LICENSE
+    - test*
   
 provider:
   name: aws
