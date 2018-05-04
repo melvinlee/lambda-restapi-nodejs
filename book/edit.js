@@ -6,17 +6,37 @@ module.exports.handler = async (event, context, callback) => {
 
     console.log(`Request: ${JSON.stringify(event, null, 2)}`);
 
+    let error = [];
     const data = JSON.parse(event.body);
 
     if(!validator.validate(data)){
-        console.log("Validation Failed");
-        callback(null, resnpose.buildResponse(400, "Couldn't update the book item."));
+        console.error("data is missing");
+        error.push({ title: "title is null or empty" });
+        error.push({ author: "author is null or empty" });
+        error.push({ read: "read is null or empty" });
+        callback(null, response.buildResponse(400, {error: error}));
         return;
-      }
+    }
 
-    if (typeof data.title !== 'string' || typeof data.author !== 'string' || typeof data.read !== 'boolean') {
-        console.log('Validation Failed');
-        callback(null, resnpose.buildResponse(400, "Couldn't update the book item."));
+    const {title, author, read } = data;
+
+    if(!validator.validate(title)){
+        console.log("title is null or empty");
+        error.push({ title: "title is null or empty" });
+    }
+
+    if (!validator.validate(author)) {
+        console.log("author is null or empty");
+        error.push({ author: "author is null or empty" });
+    }
+
+    if (!validator.validate(read)) {
+        console.log("read is null or empty");
+        error.push({ read: "read is null or empty" });
+    }
+
+    if (error.length > 0) {
+        callback(null, response.buildResponse(400, {error: error}));
         return;
     }
 
