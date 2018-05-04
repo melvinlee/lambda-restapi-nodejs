@@ -3,6 +3,20 @@ service: book-catalog
 plugins:
   - serverless-iam-roles-per-function
 
+package:
+  exclude:
+    - node_modules/**
+    - .idea/**
+    - .img/**
+    - .requirements/**
+    - env/**
+    - README.md
+    - package.json
+    - package-lock.json
+    - yarn.lock
+    - buildspec.yml
+    - build.sh
+  
 provider:
   name: aws
   runtime: nodejs8.10
