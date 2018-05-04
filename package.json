@@ -16,8 +16,8 @@
     "url": "https://github.com/melvinlee/aws-lambda-bookapi/issues"
   },
   "homepage": "https://github.com/melvinlee/aws-lambda-bookapi#readme",
-  "dependencies": {
-    "aws-sdk": "^2.222.1"
-  },
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "aws-sdk": "^2.232.1"
+  }
 }
