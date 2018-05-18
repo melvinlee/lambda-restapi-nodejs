@@ -21,7 +21,7 @@ elif [ "$1" = "deploy" ] && [ $# -eq 2 ]; then
     echo "Installing dependencies ..."
     npm install
     echo
-    echo "Deploying to evn: $STAGE..."
+    echo "Deploying to env: $STAGE..."
     sls deploy --stage $STAGE 
     echo
 else
